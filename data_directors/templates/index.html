@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Directores Argentinos Home</h1>
+
+  <p>Welcome to <em>Directores Argentinos</em>, a very basic Django website developer as a tutorial example</p>
+
+  <h2>Dinamic content</h2>
+
+  <p>Directors, their movies and more:</p>
+  <ul>
+    <li><strong>Directors:</strong></li>
+    <hr>
+    {% for dir in directors %}
+      <li>Name: {{dir.first_name}}</li>
+      <li>Last Name: {{dir.last_name}}</li>
+      <li>Birthday: {{dir.date_of_birth}}</li>
+      <ul>Movies:
+        {% for mov in movies %}
+          {% if mov.director == dir %}
+            <li>Title: {{mov.title}}</li>
+            <li>Premiere: {{mov.premiere}}</li>
+            <li>Genre: {{mov.genre.name}}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <hr>
+    {% endfor %}
+  </ul>
+{% endblock %}
